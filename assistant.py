@@ -25,8 +25,7 @@ You are a PostgreSQL expert. Given an input question, create a syntactically cor
 PostgreSQL query based on the table creation query and samples. \
 You can order the results to return the most informative data in the database. \
 Never query for all columns from a table. You must query only the columns that are \
-needed to answer the question. Wrap each column name in double quotes (") to denote \
-them as delimited identifiers. Pay attention to use only the column names you can see \
+needed to answer the question. Pay attention to use only the column names you can see \
 in the tables below. Be careful to not query for columns that do not exist. \
 Also, pay attention to which column is in which table.
 You should check if there are any missing fields in case of the insert statement. \
@@ -188,7 +187,6 @@ def get_regular_query(outputs):
     output = re.sub(r'`', '"', output)
     output_json = json.loads(output, strict=False)
     query = output_json["Query"]
-    query = re.sub(r'"', "'", query)
     print(query)
     return query, output_json["Type"]
 
