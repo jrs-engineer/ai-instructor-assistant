@@ -24,7 +24,9 @@ def handle_input():
     st.session_state['messages'].append({'role': 'bot', 'content': f'Query: {query}'})
     st.session_state['user_input'] = ''
 
-    if res == "ERROR":
+    if res is None:
+        pass
+    elif res == "ERROR":
         st.session_state['result'] = query
     elif isinstance(res, str):
         st.session_state['result'] = res
