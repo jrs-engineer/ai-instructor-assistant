@@ -11,25 +11,28 @@ if 'messages' not in st.session_state:
 
 # Function to handle user input
 def handle_input():
+    if 'result' in st.session_state:
+        del st.session_state['result']
+    if 'table_df' in st.session_state:
+        del st.session_state['table_df']
+
     user_input = st.session_state['user_input']
     st.session_state['messages'].append({'role': 'user', 'content': user_input})
     res, query = get_result(user_input)
-
-    if res is None or res == "ERROR":
-        st.session_state['messages'].append({'role': 'bot', 'content': f'{query}'})
-        return
+    print("result: ", res, query)
     
     st.session_state['messages'].append({'role': 'bot', 'content': f'Query: {query}'})
-    
-    if isinstance(res, str):
+    st.session_state['user_input'] = ''
+
+    if res == "ERROR":
+        st.session_state['result'] = query
+    elif isinstance(res, str):
         st.session_state['result'] = res
     else:
         rows, description = res
         colnames = [desc[0] for desc in description]
         df = pd.DataFrame(rows, columns=colnames)
         st.session_state['table_df'] = df
-
-    st.session_state['user_input'] = ''
 
 with st.sidebar:
     st.header("Chat History")
