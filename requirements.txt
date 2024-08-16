@@ -1,0 +1,9 @@
+# python 3.10.12
+langchain==0.2.14
+langchain_huggingface==0.0.3
+langchain_experimental==0.0.64
+torch==2.3.1 --index-url https://download.pytorch.org/whl/cu121
+transformers[torch]==4.43.3
+accelerate==0.33.0
+psycopg2_binary==2.9.9
+streamlit==1.37.1
