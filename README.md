@@ -13,6 +13,13 @@ python3 -m venv venv
 source ven/bin/activate
 pip install -r requirements.txt
 
+# up the Postgres DB
+docker compose up postgres -d
+
+# to init the Postgres DB
+python db_script.py
+
+# to run the App
 streamlit run main.py
 ```
 
